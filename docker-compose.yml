@@ -1,0 +1,21 @@
+---
+version: '3.4'
+
+x-base: &base
+  build: .
+  working_dir: /app
+  volumes:
+  - ".:/app"
+
+services:
+  summarise:
+    <<: *base
+    command: python summarise_gain_loss.py
+
+  test:
+    <<: *base
+    command: pytest
+
+  dev:
+    <<: *base
+    command: "/bin/sh"
